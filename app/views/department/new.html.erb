@@ -1,0 +1,7 @@
+<%= form_for @department, url: create_path do |d| %>
+    <%= d.label :'Department ID' %> <br />
+    <%= d.text_field :department_id, :size=> '15' %> <br />
+    <%= d.label :'Department Name' %> <br />
+    <%= d.text_field :dname, :size=> '15' %> <br />
+    <%= d.submit :'Add Department' %> <br />
+<% end %>
