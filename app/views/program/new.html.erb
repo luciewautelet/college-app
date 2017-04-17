@@ -1,0 +1,7 @@
+<%= form_for @program, url: create_path do |d| %>
+    <%= d.label :'Program ID' %> <br />
+    <%= d.text_field :program_id, :size=> '15' %> <br />
+    <%= d.label :'Program Name' %> <br />
+    <%= d.text_field :pname, :size=> '15' %> <br />
+    <%= d.submit :'Add Program' %> <br />
+<% end %>

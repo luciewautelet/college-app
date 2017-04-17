@@ -1,0 +1,26 @@
+<center>
+         <%= form_for(@grades) do |f| %>
+    <p>
+        <%= f.hidden_field :id, :readonly => true, :value => @id %>
+        Student number :
+        <%= @user_id %>
+        <%= f.hidden_field :student_id, :readonly => true, :value => @user_id%>
+    </p>
+    <p>
+        Student name : 
+        <%= @userone[0][:name] %>
+    </p>
+    <p>
+        <% @module.each do |m| %>
+        Module name
+        <%= f.hidden_field :module_id, :readonly => true, :value => m.course_module_id%>
+        <%= m.mname %>
+        <%end%>
+    </p>
+
+    <p>Grade : 
+    <%= f.number_field :grade,  class: "btn btn-primary"%>
+    <%= f.submit "Save", class: "btn btn-primary" %>
+    <%end%>
+    </p>
+</center>

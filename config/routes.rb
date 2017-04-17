@@ -25,13 +25,26 @@ Rails.application.routes.draw do
   get'/home' => 'static_pages#home'
   get '/homest' => 'student#home'
   get '/homead' => 'admin#home'
+  get '/homele' => 'lecturer#home'
   
   get '/dellect' => 'course_module#deluser'
   get '/assign' => 'course_module#assign'
   get '/assget' => 'course_module#assget'
   
+  get 'addgrade' => 'grade#add'
+  get 'modgrade' => 'grade#modify'
+  
+  post '/grades' => 'grade#addget'
+  post '/modget' => 'grade#modget'
+  
+  get 'subscribe' => 'student#subscribe'
+  get 'insuscribe' => 'student#insuscribe'
+
+  root 'sessions#new'
+  
   resources :students 
   resources :lecturers
   resources :admins
+  resources :grades
   
 end

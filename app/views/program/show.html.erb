@@ -1,0 +1,23 @@
+<table>
+    <tr>
+        <td>Program ID</td>
+        <td>Program Name</td>
+    </tr>
+    <tr>
+        <td><%= @program.program_id %></td>
+        <td><%= @program.pname %></td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>Module Code</td>
+        <td>Module Name</td>
+    </tr>
+    <% @program.course_modules.each do |m| %>
+    <tr>
+        <td><%= m.program_id %></td>
+        <td><%= m.mname %></td>
+    </tr>
+    <% end %>
+</table>

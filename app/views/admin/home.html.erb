@@ -1,0 +1,38 @@
+<% provide(:title, 'home') %>
+<center>
+    All lecturer
+    <table>
+        <th>
+            ID
+        </th>
+        <th>
+            name
+        </th>
+        <th>
+            options
+        </th>
+        <% @lecturers.each do |l| %>
+        <tr>
+            <td><%=l.lecturer_id%></td>
+            <td><%=l.name%></td>
+            <% count = 0%>
+              <% @modules.each do |m| %>
+
+                  <%if m.lecturer_id == l.lecturer_id%>
+            <td>
+              <%= m.mname %>
+              <%=link_to "unassign", dellect_path(:module_id => m.course_module_id)%>
+              <% count = count + 1%>
+              <%end%></td>
+
+              <%end%>
+              
+             <%if count < 3%>
+              <td><%= link_to "Assign", assign_path(:lecturer_id => l.lecturer_id)%><td>
+                <%end%>
+
+       
+        </tr>
+        <%end%>
+    </table>
+</center>

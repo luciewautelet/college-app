@@ -1,0 +1,31 @@
+<% provide(:title, "Log in") %>
+     <center>
+<h1>Log in as <%= @type %></h1>
+
+<div class="row">
+
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= form_for(:session, url: login_path(:type => @type)) do |f| %>
+<p>
+      <%= f.label :number %>
+      <%= f.text_field :number, class: 'form-control' %>
+      </p>
+      <p>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+      </p>
+
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
+
+
+    <%= link_to "professor space", login_path(:type => "professor") %>
+    <%= link_to "administrator space", login_path(:type => "admin")%>
+    <%= link_to 'student space', login_path(:type => 'student')%>
+    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  </div>
+
+</div>
+  </center>

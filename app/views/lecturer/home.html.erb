@@ -1,0 +1,68 @@
+<% provide(:title, 'home') %>
+<center>
+    
+    <table border="1">
+        <caption>Your modules</caption>
+        <% @modules.each do |m| %>
+            <tr>
+                <td>
+            <%= m.mname %>
+            </td>
+            </tr>
+        <%end%>
+    </table>
+    
+    </br>
+    
+    <table border="1">
+        <caption>Student panel</caption>
+        <tr>
+        <th>Student_id</th>
+        <th>Student name</th>
+        <th>Module name</th>
+        <th>Grade</th>
+        
+    </tr>
+    <% @user.each do |u|%>
+    <% if u[:course_module_ids] != nil %>
+    <% u[:course_module_ids].split(";").each do |t| %>
+
+    <% @modules.each do |m| %>
+    <% if Integer(t) == Integer(m.course_module_id) %>
+    <tr>
+        <td>
+            <%= u.student_id%>
+        </td>
+        <td>
+            <%= u.name%>
+        </td>
+        <td>
+            <%= m.mname %>
+        </td>
+        <td>
+        <%count = 0%>
+        <%@grades.each do |g| %>
+            <% if Integer(g.student_id) == Integer(u.student_id) && Integer(g.module_id) == Integer(m.course_module_id) %>
+            <%= g.grade %>
+            <% count = 1%>
+            <%end%>
+        <%end%>
+        <% if count == 0 %>
+        <%= link_to "Add a mark", addgrade_path(:uid => u.student_id, :mid => m.course_module_id) %>
+        <%elsif !Date.parse(m.deadline.to_s).past?%>
+    
+        <%= link_to "Modify", modgrade_path(:uid => u.student_id, :mid => m.course_module_id) %>
+
+        <%end%>
+        </td>
+    </tr>
+
+    <%end%>
+    <%end%>
+    
+    <%end%>
+    
+    <%end%>
+    <%end%>
+    </table>
+</center>

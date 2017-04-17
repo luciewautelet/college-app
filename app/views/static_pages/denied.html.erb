@@ -1,0 +1,10 @@
+<% provide(:title, "Denied") %>
+<center>
+<h1>Access denied</h1>
+<p>
+<%= link_to "Already have an account?", login_path("type" => "student") %>
+</p>
+<p>
+    <%= link_to "Sign up", signup_path%>
+    </p>
+</center>

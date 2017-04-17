@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_module_id: 1
+  mname: MyString
+  program_id: 1
+  lecturer_id: 1
+  admin_id: 1
+  deadline: 2017-04-10 20:08:05
+
+two:
+  course_module_id: 1
+  mname: MyString
+  program_id: 1
+  lecturer_id: 1
+  admin_id: 1
+  deadline: 2017-04-10 20:08:05

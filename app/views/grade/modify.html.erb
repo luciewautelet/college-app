@@ -1,0 +1,24 @@
+<center>
+         <%= form_for(@grades, url: modget_path) do |f| %>
+    <p>
+        <%= f.hidden_field :id, :readonly => true, :value => @id[0][:id] %>
+        Student number :
+        <%= @user_id %>
+    </p>
+    <p>
+        Student name : 
+        <%= @userone[0][:name] %>
+    </p>
+    <p>
+        <% @module.each do |m| %>
+        Module name
+        <%= m.mname %>
+        <%end%>
+    </p>
+
+    <p>Grade : 
+    <%= f.number_field :grade,  class: "btn btn-primary" , :value => @id[0][:grade]%>
+    <%= f.submit "Save", class: "btn btn-primary" %>
+    <%end%>
+    </p>
+</center>

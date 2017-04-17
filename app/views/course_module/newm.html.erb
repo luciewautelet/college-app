@@ -1,0 +1,10 @@
+<%= form_for @course_module, url: createm_path do |d| %>
+    <%= d.label :'Module Id' %> <br />
+    <%= d.text_field :course_module_id %> <br />
+    <%= d.label :'Module Name' %> <br />
+    <%= d.text_field :mname %> <br />
+    <%= d.label :'Program' %> <br />
+    <%= d.select :program_id, Program.all.collect { |p|
+    [p.pname, p.program_id]}, {include_blank: true} %> <br />
+    <%= d.submit :'Add Module' %> <br />
+<% end %>

@@ -1,0 +1,12 @@
+<% provide(:title, 'assign') %>
+<center>
+    <h1>Which course would you like to assign to
+    <%= @lecturer.name%>
+    </h1>
+    
+    <% @modules.each do |m| %>
+    <p>
+    <%= link_to m.mname, assget_path(:module_id => m.course_module_id, :lecturer_id => @lecturer.lecturer_id)%>
+    </p>
+    <%end%>
+</center>

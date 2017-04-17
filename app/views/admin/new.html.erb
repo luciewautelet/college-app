@@ -1,0 +1,41 @@
+<% provide(:title, 'sign up') %>
+<center>
+<h1>Sign up as administrator</h1>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_for(@admins) do |f| %>
+        <p>
+        <%= f.label :admin_id %> Id
+        <%= f.text_field :admin_id %>
+        </p>
+        <p>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+        </p>
+        <p>
+            <%= f.label "Program Administrator" %> <br />
+            <%= check_box("isProgramAdm", "post", options = {}, checked_value = "1", unchecked_value = "0") %> <br />
+        </p>
+        <p>
+            <%= f.label "Admin of Program:" %> <br />
+            <%= f.select :program_id, Program.all.collect { |p|
+            [p.pname, p.program_id]}, {include_blank: true} %> <br />
+        </p>
+        <p>
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+        </p>
+        <p>
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation %>
+         </p>
+         <%= f.hidden_field :module_id, :value => "-1"%>
+         <%= f.hidden_field :isSuperAdm, :value => "0" %>
+        <p>
+        <%= f.submit "Create my account", class: "btn btn-primary" %>
+        <% end %>
+        </p>
+        <p>Sign up as <%= link_to "student", signup_path %>,  <%= link_to "lecturer", signup_le_path %></p>
+    </div>
+</div>
+</center>

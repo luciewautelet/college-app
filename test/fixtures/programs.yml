@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  program_id: 1
+  admin_id: 1
+  pname: MyString
+
+two:
+  program_id: 1
+  admin_id: 1
+  pname: MyString

@@ -1,0 +1,31 @@
+<% provide(:title, 'sign up') %>
+<center>
+<h1>Sign up as lecturer</h1>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_for(@lecturers) do |f| %>
+        <p>
+        <%= f.label :lecturer_id %> Id
+        <%= f.text_field :lecturer_id %>
+        </p
+        ><p>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+        </p>
+        <p>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+        </p>
+        <p>
+
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+         </p>
+        <p>
+        <%= f.submit "Create my account", class: "btn btn-primary" %>
+        <% end %>
+        </p>
+        <p>Sign up as <%= link_to "student", signup_path %>,  <%= link_to "administrator", signup_ad_path %></p>
+    </div>
+</div>
+</center>

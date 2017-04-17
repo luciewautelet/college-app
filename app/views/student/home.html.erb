@@ -1,0 +1,109 @@
+<% provide(:title, 'home') %>
+<center>
+    <h1>Student home</h1>
+<table>
+    <th>
+        NAME : <%= @current_user.name %>
+    </th>
+    <th>
+        ID : <%= @current_user.student_id %>
+    </th>
+    <th>
+        PROGRAM : <%= @program.pname %>
+    </th>
+</table>
+<br>
+
+    <% count = 0 %>
+<table border="1">
+    <% @user.each do |m| %>
+
+<tr>
+    <caption>YOUR MODULES</caption>
+    <tr><th>Modue name</th>
+    <th>Grade</th>
+    </tr>
+    <% @best = [] %> 
+    <% @best[0] = 0 %>
+    <% @best[1] = 0 %>
+    <% @best[2] = 0%>
+    <% counter = 0 %>
+    <%if m[:course_module_ids] != nil %>
+        <% m[:course_module_ids].split(";").each do |t| %>
+    
+            <% @modules.each do |m| %>
+            <% if Integer(m.course_module_id) == Integer(t) %>
+            <% count  = count + 1 %>
+                <tr><td>
+            <%= m.mname %>
+            </td>
+            <td>
+                <% @grades.each do |g| %>
+                <%if Integer(g.module_id) == Integer(m.course_module_id)%>
+                <%= g.grade %>
+                <% lower = recup_lower?(@best)%>
+                    <% if @best[lower].to_i < g.grade.to_i%>
+                    <% @best[lower]  = g.grade%>
+                    <%end%>
+                <%end%>
+                <%end%>
+            </td>
+                </tr>
+            <%end%>
+        <%end%>
+    <%end%>
+    <%end%>
+
+<%end%>
+</table>
+
+</br>
+<% if count < 3 %>
+<h1>Careful! You will not pass semester</h1>
+<%end%>
+</br>
+<table border ="1">
+   <caption>CLASSES AVAILABLE</caption>
+   <tr>
+       <th>Module name</th>
+       <th>options</th>
+   </tr>
+    <% @user.each do |u| %>
+        <% @modules.each do |m| %>
+        <tr>
+            <td>
+            <%= m.mname%>
+            </td>
+            <% count  = 0 %>
+                <%if u[:course_module_ids] != nil %>
+                    <% u[:course_module_ids].split(";").each do |t| %>
+                        <% if Integer(t) == Integer(m.course_module_id) %>
+                        <%count = 1%>
+                        <%end%>
+                    <%end%>
+                <%end%>
+                    <td>
+            <%if count == 1%>
+            <%= link_to "Unsubscribe", insuscribe_path("mid" => m.course_module_id)%>
+            <%else%>
+            <%= link_to "Subscribe", subscribe_path("mid" => m.course_module_id)%>
+            <%end%>
+            
+            </td>
+        </tr>
+        <%end%>
+    <%end%>
+</table>
+
+</br>
+<p>Your overall grade</p>
+<% if @best[0].to_i > 40 && @best[1].to_i > 40 && @best[2].to_i > 40%>
+<p>Success</p>
+<% elsif condition_success?(@best)%>
+<p>Success</p>
+<%else%>
+<p>Fails</p>
+<%end%>
+
+
+</center>
