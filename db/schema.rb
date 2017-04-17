@@ -11,15 +11,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403181849) do
+ActiveRecord::Schema.define(version: 20170411161307) do
 
-  create_table "departments", primary_key: "department_id", force: :cascade do |t|
-    t.string "dname"
+  create_table "admins", primary_key: "admin_id", force: :cascade do |t|
+    t.string  "name"
+    t.string  "password_digest"
+    t.integer "program_id"
+    t.integer "module_id"
+    t.boolean "isSuperAdm"
+    t.boolean "isProgramAdm"
   end
 
-  create_table "programmes", primary_key: "code", force: :cascade do |t|
+  create_table "course_modules", primary_key: "course_module_id", force: :cascade do |t|
+    t.string   "mname"
+    t.integer  "program_id"
+    t.integer  "lecturer_id"
+    t.integer  "admin_id"
+    t.datetime "deadline"
+  end
+
+  create_table "grades", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "module_id"
+    t.string  "grade"
+  end
+
+  create_table "lecturers", primary_key: "lecturer_id", force: :cascade do |t|
+    t.string "name"
+    t.string "password_digest"
+    t.string "course_modules"
+  end
+
+  create_table "programs", primary_key: "program_id", force: :cascade do |t|
+    t.integer "admin_id"
     t.string  "pname"
-    t.integer "department_id"
+  end
+
+  create_table "students", primary_key: "student_id", force: :cascade do |t|
+    t.string  "name"
+    t.string  "password_digest"
+    t.string  "course_module_ids"
+    t.integer "program_id"
   end
 
 end
