@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get '/dellect' => 'course_module#deluser'
   get '/assign' => 'course_module#assign'
   get '/assget' => 'course_module#assget'
+
+  root 'sessions#new'
   
   resources :students 
   resources :lecturers
