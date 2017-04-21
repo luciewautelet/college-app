@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   get '/dellect' => 'course_module#deluser'
   get '/assign' => 'course_module#assign'
   get '/assget' => 'course_module#assget'
+
+  root 'sessions#new'
   
   get 'addgrade' => 'grade#add'
   get 'modgrade' => 'grade#modify'
